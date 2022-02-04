@@ -1,0 +1,59 @@
+<nb-card style="width: 50vw">
+  <nb-card-header>Add Question</nb-card-header>
+
+  <nb-card-body>
+    <form [formGroup]="addQuestionForm">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="status">Section</label>
+            <select formControlName="sectionId" class="form-control"
+                    id="status">
+              <option *ngFor="let section of sections" value="{{section.id}}">{{section.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="weight">Weight</label>
+              <select formControlName="weight" class="form-control"
+                      id="weight">
+                <option *ngFor="let weight of weights" value="{{weight}}">{{weight}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="questionBody">Question Body</label>
+              <textarea rows="5" nbInput fullWidth formControlName="question" shape="rectangle" id="questionBody"
+                        placeholder="Question Body"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <button [disabled]="!addQuestionForm.valid"
+                    class="btn btn-outline-success btn-icon btn-semi-round btn-demo"
+                    id="button"
+                    (click)="onSubmit()"
+                    type="button">
+              Save
+              <i class="plus-outline"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>
+
+

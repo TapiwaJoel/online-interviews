@@ -1,0 +1,64 @@
+<nb-card style="width: 50vw">
+  <nb-card-header>Add Time Slot</nb-card-header>
+
+  <nb-card-body>
+    <form [formGroup]="addTimeSlotForm">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="startHour">Start Time</label>
+            <select formControlName="startHour" class="form-control"
+                    id="startHour">
+              <option *ngFor="let status of hours" value="{{status}}">{{status}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="startMin">&nbsp;</label>
+            <select formControlName="startMin" class="form-control"
+                    id="startMin">
+              <option *ngFor="let status of minutes" value="{{status}}">{{status}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="endHour">End Time</label>
+            <select formControlName="endHour" class="form-control"
+                    id="endHour">
+              <option *ngFor="let status of hours" value="{{status}}">{{status}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="endMin">&nbsp;</label>
+            <select formControlName="endMin" class="form-control"
+                    id="endMin">
+              <option *ngFor="let status of minutes" value="{{status}}">{{status}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="form-group">
+            <button [disabled]="!addTimeSlotForm.valid"
+                    class="btn btn-outline-success btn-icon btn-semi-round btn-demo"
+                    id="button"
+                    (click)="onSubmit()"
+                    type="button">
+              Save
+              <i class="plus-outline"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>
+
+

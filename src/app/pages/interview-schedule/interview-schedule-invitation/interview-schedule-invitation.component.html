@@ -1,0 +1,68 @@
+<nb-card-body>
+  <form [formGroup]="scheduleInterviewForm" *ngIf="addType==='USER'">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="interviewId">Select User</label>
+            <select id="user" class="form-control" formControlName="userId">
+              <option *ngFor="let user of users" [value]="user.id">{{ user.fullname }}, {{user.roles}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="interviewId">Select TimeSlot</label>
+            <select id="interviewId" class="form-control" formControlName="timeslotId">
+              <option *ngFor="let timeSlot of timeSlots" [value]="timeSlot.id">{{ timeSlot.startTime }} -
+                {{timeSlot.endTime}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="button">&nbsp;</label>
+          <button class="btn btn-outline-success btn-icon btn-semi-round btn-demo form-control"
+                  id="button"
+                  (click)="onSubmit()"
+                  type="button">
+            Save
+            <i class="plus-outline"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <form [formGroup]="scheduleInterviewFormQuestion" *ngIf="addType==='QUESTION'">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="interviewId">Select Question</label>
+            <select id="questionId" class="form-control" formControlName="questionId">
+              <option *ngFor="let question of questions" [value]="question.id">{{ question.question }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="button2">&nbsp;</label>
+          <button class="btn btn-outline-success btn-icon btn-semi-round btn-demo form-control"
+                  id="button2"
+                  (click)="onSubmitQuestion()"
+                  type="button">
+            Save
+            <i class="plus-outline"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</nb-card-body>
+
+
+

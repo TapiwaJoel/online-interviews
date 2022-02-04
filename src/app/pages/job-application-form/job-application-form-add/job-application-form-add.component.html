@@ -1,0 +1,217 @@
+<nb-card class="col-md-12 col-lg-12 col-xxxl-12">
+  <nb-card-header>Job Application Form</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="name">Enter yor full name</label>
+            <input class="form-control" id="name" placeholder="Name" type="text">
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="name">How introduced</label>
+            <input class="form-control" id="introduced" placeholder="How introduced" type="text">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12" style="margin-bottom: .5rem; margin-top: 1.5rem; font-weight: bold;">
+        Personal Details
+      </div>
+
+      <div class="col-sm-3">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input class="form-control" id="competent"
+                   placeholder="Name and Surname"
+                   type="text">
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="weight">Gender</label>
+          <select id="weight" class="form-control">
+            <option *ngFor="let gender of genders" [value]="gender">{{ gender }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="weight">DOB</label>
+          <input class="form-control" [nbDatepicker]="datepicker" placeholder="Date of Birth" readonly>
+          <nb-datepicker #datepicker></nb-datepicker>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="marital">Marital Status</label>
+          <select id="marital" class="form-control">
+            <option *ngFor="let marital of maritals" [value]="marital">{{ marital }}</option>
+          </select>
+        </div>
+      </div>
+
+
+      <div class="col-sm-3">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="Religion">Religion</label>
+            <input class="form-control" id="Religion"
+                   placeholder="Religion"
+                   type="text">
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="Education">Education</label>
+          <select id="Education" class="form-control">
+            <option *ngFor="let gender of educationLevel" [value]="gender">{{ gender }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="weight">Nationality</label>
+          <input class="form-control" id="Nationality"
+                 placeholder="Nationality"
+                 type="text">
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="idNumber">I.D Number</label>
+          <input class="form-control" id="idNumber"
+                 placeholder="I.D Number"
+                 type="text">
+        </div>
+      </div>
+
+
+      <div class="col-sm-3">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="numberOfChildren">Number of children</label>
+            <input class="form-control" id="numberOfChildren"
+                   placeholder="Number of children"
+                   type="text">
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="tellBusiness">Tel (Business)</label>
+          <input class="form-control" id="tellBusiness"
+                 placeholder="Tel (Business)"
+                 type="text">
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="telHome">Tel (Home)</label>
+          <input class="form-control" id="telHome"
+                 placeholder="Tel (Home)"
+                 type="text">
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="idNumber">Residential Address</label>
+          <textarea class="form-control" id="address"
+                    rows="1"
+                    placeholder="Residential Address"
+          ></textarea>
+        </div>
+      </div>
+
+
+      <div class="col-6">
+        <nb-checkbox>Do you have a valid driver’s license?</nb-checkbox>
+      </div>
+      <div class="col-6">
+        <nb-checkbox>Do you have a valid passport?</nb-checkbox>
+      </div>
+
+      <div class="col-6">
+        <nb-checkbox>Do you have any relatives currently employed by Econet Wireless (Pvt) Ltd
+        </nb-checkbox>
+      </div>
+      <div class="col-6">
+        <nb-checkbox>Have you ever faced any disciplinary action (dismissible offense(s)) in your previous employment?
+        </nb-checkbox>
+      </div>
+      <div class="col-6">
+        <nb-checkbox>Have you ever been convicted of or do you have any pending criminal case(s)</nb-checkbox>
+      </div>
+
+
+      <div class="col-sm-12" style="margin-bottom: .5rem; margin-top: 1.5rem; font-weight: bold;">
+        Employment Details
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="currentEmployer">Current Employer</label>
+            <input class="form-control" id="currentEmployer" placeholder="Current Employer" type="text">
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="position">Position</label>
+            <input class="form-control" id="position" placeholder="Position" type="text">
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="currentBenefits">Current Benefits</label>
+            <textarea class="form-control" id="currentBenefits" placeholder="Current Benefits"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="reasonsForLeaving">Reasons for leaving current position/employer</label>
+            <textarea class="form-control" id="reasonsForLeaving"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="noticePeriod">Notice Period</label>
+            <input class="form-control" id="noticePeriod" placeholder="Notice Period" type="text">
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="expectedSalary">Expected Salary and Benefits</label>
+            <textarea class="form-control" id="expectedSalary"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="hobbies">Hobbies and interest</label>
+            <textarea class="form-control" id="hobbies"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

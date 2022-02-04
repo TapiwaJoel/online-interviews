@@ -1,0 +1,9 @@
+<nb-card [nbSpinner]="false" nbSpinnerStatus="danger" style="width: 50vw">
+  <nb-card-header>{{interview.name}} Score Card</nb-card-header>
+  <nb-card-body>
+    <ng2-smart-table *ngIf="isDetailedSelected=='1'"
+                     [settings]="settings"
+                     [source]="source">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

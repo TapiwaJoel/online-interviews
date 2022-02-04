@@ -1,0 +1,190 @@
+<nb-card style="width: 70vw">
+  <nb-card-header>Add Reference Check</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="addInterviewForm">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="name">Name of candidate</label>
+              <input class="form-control" id="name" formControlName="candidateId" placeholder="Name" type="text"
+                     readonly>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="name">Position</label>
+              <input class="form-control" id="position" formControlName="position"
+                     placeholder="Position the candidate is earmarked for" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="name">Referee</label>
+              <input class="form-control" id="referee" formControlName="name" placeholder="Referee" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="name">Position of referee</label>
+              <input class="form-control" id="positionOfReferee" formControlName="positionOfReferee"
+                     placeholder="Position of referee" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="name">Reference Email</label>
+              <input class="form-control" id="email" formControlName="email" placeholder="Referee Email"
+                     type="text">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="name">Reference Phone Number</label>
+              <input class="form-control" id="contactNumber" formControlName="contactNumber"
+                     placeholder="Reference Phone Number" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="organization">Organization</label>
+              <input class="form-control" id="organization" formControlName="organization"
+                     placeholder="Organization" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="refereeRelationship">Relationship between referee and candidate</label>
+              <input class="form-control" id="refereeRelationship" formControlName="refereeRelationship"
+                     placeholder="Relationship between referee and
+                candidate" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12" style="margin-bottom: .5rem; font-weight: bold;">
+          How do you describe his attitude towards
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="workAttitude">Work</label>
+              <input class="form-control" id="workAttitude" formControlName="workAttitude"
+                     placeholder="Work" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="authorityRelations">Authority Figures</label>
+              <input class="form-control" id="authorityRelations" formControlName="authorityRelations"
+                     placeholder="Authority Figures" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="peerRelations">Peers</label>
+              <input class="form-control" id="peerRelations" formControlName="peerRelations"
+                     placeholder="Organization" type="text">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="name">Do you feel that he/she possesses the
+                essential competencies to work as <br/>
+                (position)</label>
+              <select class="form-control" formControlName="competent" id="competent">
+                <option *ngFor="let status of statuses" value="{{status.val}}">{{status.key}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="reasonForleaving">Would you know of any reason(s) why
+                the candidate left/would leave your <br/>
+                organization</label>
+              <textarea class="form-control" id="reasonForleaving" formControlName="reasonForleaving"
+                        type="text" rows="5"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="workEffectiveness">Could you give any areas that you think
+                he/she would need to work on for
+                him/her to become more effective?</label>
+              <textarea class="form-control" id="workEffectiveness" formControlName="workEffectiveness"
+                        type="text" rows="5"> </textarea>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="comments">Do you have anything else that we have
+                not discussed but that would assist us <br/>
+                in finalizing our selection process?</label>
+              <textarea class="form-control" id="comments" formControlName="comments"
+                        type="text" rows="5"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="checkedBy">Reference check done by</label>
+              <input class="form-control" id="checkedBy" formControlName="checkedBy"
+                     placeholder="Checked By" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="recommendedBy">Recommended by</label>
+              <input class="form-control" id="recommendedBy" formControlName="recommendedBy"
+                     placeholder="Recommended By" type="text">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12">
+          <div class="form-group">
+            <button [disabled]="!addInterviewForm.valid"
+                    class="btn btn-outline-success btn-icon btn-semi-round btn-demo"
+                    id="button"
+                    (click)="onSubmit()"
+                    type="button">
+              Save
+              <i class="plus-outline"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </nb-card-body>
+</nb-card>

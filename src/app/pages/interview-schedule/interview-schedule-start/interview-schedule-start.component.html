@@ -1,0 +1,71 @@
+<nb-card>
+  <nb-card-body>
+    <form [formGroup]="scheduleInterviewForm">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="userId">Select User</label>
+              <select id="userId" class="form-control" formControlName="candidateId">
+                <option *ngFor="let user of users" [value]="user.id">{{ user.fullname }}, {{user.roles}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="button">&nbsp;</label>
+            <button class="btn btn-outline-success btn-icon btn-semi-round btn-demo form-control"
+                    id="button"
+                    (click)="onSubmit()"
+                    type="button">
+              Start
+              <i class="plus-outline"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>
+
+<nb-card *ngIf="question; else noQuestion">
+  <nb-card-header>{{user.fullname}} Interview Questions</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="addInterviewForm">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <span style="font-weight: bold;">Question {{index}} of {{questions.length}}</span><br>
+            <span style="font-weight: bold;">{{question.question}}, {{question.id}}</span>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="weight">Comment</label>
+            <textarea nbInput fullWidth placeholder="Comment" formControlName="comment"></textarea>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="weight">Mark</label>
+            <select id="weight" class="form-control" formControlName="weight">
+              <option *ngFor="let weight of weights" [value]="weight">{{ weight }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <label for="button1">&nbsp;</label>
+          <button nbButton id="button1" status="success" (click)="next()">Next</button>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #noQuestion>
+  <nb-card>
+    <nb-card-body>There are no questions for this interview</nb-card-body>
+  </nb-card>
+</ng-template>
+

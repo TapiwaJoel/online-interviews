@@ -2,46 +2,69 @@ import {NbMenuItem} from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'E-commerce',
-    icon: 'shopping-cart-outline',
-    link: '/pages/dashboard',
-    home: true,
+    title: 'FEATURES',
+    group: true,
   },
   {
-    title: 'IoT Dashboard',
-    icon: 'home-outline',
-    link: '/pages/iot-dashboard',
+    title: 'Users',
+    icon: 'person-outline',
+    link: '/pages/users',
   },
+  {
+    title: 'Sections',
+    icon: 'award-outline',
+    link: '/pages/sections',
+  },
+  {
+    title: 'Interviews',
+    icon: 'award-outline',
+    link: '/pages/interviews',
+  },
+  {
+    title: 'Interviews Schedule',
+    icon: 'award-outline',
+    link: '/pages/interview-schedule',
+  },
+  {
+    title: 'Time Slots',
+    icon: 'clock-outline',
+    link: '/pages/time-slots',
+  },
+  {
+    title: 'Questions',
+    icon: 'question-mark-circle-outline',
+    link: '/pages/questions',
+  },
+  {
+    title: 'Reference Check Forms',
+    icon: 'checkmark-square-outline',
+    link: '/pages/ref-check',
+  },
+  {
+    title: 'Pre-Interview Form',
+    icon: 'checkmark-square-outline',
+    link: '/pages/pre-interview-form',
+  },
+  {
+    title: 'Job Application Form',
+    icon: 'checkmark-square-outline',
+    link: '/pages/job-application-form',
+  },
+];
+
+export const INTERVIEWEE_MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'FEATURES',
     group: true,
   },
   {
-    title: 'Layout',
-    icon: 'layout-outline',
-    children: [
-      {
-        title: 'Stepper',
-        link: '/pages/layout/stepper',
-      },
-      {
-        title: 'List',
-        link: '/pages/layout/list',
-      },
-      {
-        title: 'Infinite List',
-        link: '/pages/layout/infinite-list',
-      },
-      {
-        title: 'Accordion',
-        link: '/pages/layout/accordion',
-      },
-      {
-        title: 'Tabs',
-        pathMatch: 'prefix',
-        link: '/pages/layout/tabs',
-      },
-    ],
+    title: 'Pre Interview Form',
+    icon: 'person-outline',
+    link: '/pages/users',
   },
-
+  {
+    title: 'Job Application Form',
+    icon: 'person-outline',
+    link: '/pages/users',
+  },
 ];

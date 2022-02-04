@@ -1,0 +1,46 @@
+<nb-card style="width: 50vw">
+  <nb-card-header>Add Interview</nb-card-header>
+
+  <nb-card-body>
+    <form [formGroup]="scheduleInterviewForm">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="interviewId">Select Interview</label>
+              <select id="interviewId" class="form-control" formControlName="interviewId">
+                <option *ngFor="let interview of interviews" [value]="interview.id">{{ interview.name }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="location">Date</label>
+            <input class="form-control" formControlName="dateOfInterview" id="location" placeholder="Date"
+                   readonly
+                   [nbDatepicker]="dateTimePicker"
+                   type="text">
+            <nb-datepicker #dateTimePicker></nb-datepicker>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="form-group">
+            <button [disabled]="!scheduleInterviewForm.valid"
+                    class="btn btn-outline-success btn-icon btn-semi-round btn-demo"
+                    id="button"
+                    (click)="onSubmit()"
+                    type="button">
+              Save
+              <i class="plus-outline"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>
+
+

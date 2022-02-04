@@ -1,0 +1,23 @@
+<nb-card [nbSpinner]="false" nbSpinnerStatus="danger">
+  <nb-card-header>
+    <div class="row">
+      <div class="col-md-10">
+        Interviews
+      </div>
+
+      <nb-actions size="medium" class="text-left">
+        <nb-action></nb-action>
+        <nb-action (click)="openAddTutorDialogue()" icon="plus-square-outline" nbTooltip="Add Interview"
+                   nbTooltipPlacement="bottom"></nb-action>
+        <nb-action></nb-action>
+      </nb-actions>
+    </div>
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table *ngIf="isDetailedSelected=='1'" (userRowSelect)="onUserRowSelect($event)"
+                     [settings]="settings"
+                     [source]="source">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

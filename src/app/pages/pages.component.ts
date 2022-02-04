@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-import { MENU_ITEMS } from './pages-menu';
+import {INTERVIEWEE_MENU_ITEMS, MENU_ITEMS} from './pages-menu';
 
 @Component({
   selector: 'ngx-pages',
@@ -13,6 +13,15 @@ import { MENU_ITEMS } from './pages-menu';
   `,
 })
 export class PagesComponent {
+  menu;
 
-  menu = MENU_ITEMS;
+  constructor() {
+    const user = JSON.parse(localStorage.getItem('auth'));
+    if (user.user.roles === 'ADMIN') {
+      this.menu = MENU_ITEMS;
+    }
+    if (user.user.roles === 'INTERVIEWEE') {
+      this.menu = INTERVIEWEE_MENU_ITEMS;
+    }
+  }
 }

@@ -1,0 +1,71 @@
+<nb-card style="width: 50vw">
+  <nb-card-header>Edit User</nb-card-header>
+
+  <nb-card-body>
+    <form [formGroup]="addUserForm">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input class="form-control" id="name" formControlName="fullname" placeholder="Name" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="msisdn">MSISDN</label>
+            <input class="form-control" formControlName="msisdn" id="msisdn" placeholder="Phone Number"
+                   type="text">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="emailAddress">Email Address</label>
+              <input class="form-control" id="emailAddress" formControlName="email" placeholder="Email Address"
+                     type="text">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="role">Role</label>
+            <select formControlName="roles" class="form-control"
+                    id="role">
+              <option *ngFor="let role of roles" value="{{role.key}}">{{role.val}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="role">Status</label>
+            <select formControlName="status" class="form-control"
+                    id="status">
+              <option *ngFor="let status of statuses" value="{{status.key}}">{{status.val}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="form-group">
+            <button [disabled]="!addUserForm.valid"
+                    class="btn btn-outline-success btn-icon btn-semi-round btn-demo"
+                    id="button"
+                    (click)="onSubmit()"
+                    type="button">
+              Save
+              <i class="plus-outline"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>
+
+

@@ -1,0 +1,43 @@
+<nb-card style="width: 50vw">
+  <nb-card-header>Add Interview</nb-card-header>
+
+  <nb-card-body>
+    <form [formGroup]="addInterviewForm">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input class="form-control" id="name" formControlName="name" placeholder="Name" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="status">Section</label>
+            <select formControlName="sectionId" class="form-control"
+                    id="status">
+              <option *ngFor="let section of sections" value="{{section.id}}">{{section.name}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <button [disabled]="!addInterviewForm.valid"
+                    class="btn btn-outline-success btn-icon btn-semi-round btn-demo"
+                    id="button"
+                    (click)="onSubmit()"
+                    type="button">
+              Save
+              <i class="plus-outline"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>
+
+

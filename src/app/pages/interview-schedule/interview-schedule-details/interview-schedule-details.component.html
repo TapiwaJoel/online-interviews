@@ -1,0 +1,46 @@
+<nb-card [nbSpinner]="false" nbSpinnerStatus="danger">
+  <nb-card-header>
+    <div class="row">
+      <div class="col-6">
+        {{interview?.name}}
+      </div>
+      <button nbButton status="success" style="margin-right: 1rem; margin-left: 1rem;" (click)="startInterview()">More
+      </button>
+      <button nbButton status="success" style="margin-right: 1rem; margin-left: 1rem;"
+              (click)="openScoreCard()">Score Card
+      </button>
+      <button nbButton status="success" style="margin-right: 1rem; margin-left: 1rem;" (click)="changeAdd('USER')">Add
+        Panelist
+        /Candidate
+      </button>
+      <button nbButton status="success" style="margin-right: 1rem; margin-left: 1rem;"
+              (click)="changeAdd('QUESTION')">Add Question
+      </button>
+    </div>
+  </nb-card-header>
+
+  <nb-card-body>
+
+    <ngx-interview-schedule-invitation [addType]="addType"></ngx-interview-schedule-invitation>
+    <nb-tabset>
+      <nb-tab tabTitle="Panelist">
+        <ng2-smart-table *ngIf="isDetailedSelected=='1'" (userRowSelect)="onUserRowSelect($event)"
+                         [settings]="settings"
+                         [source]="sourcePanelist">
+        </ng2-smart-table>
+      </nb-tab>
+      <nb-tab tabTitle="Candidates">
+        <ng2-smart-table *ngIf="isDetailedSelected=='1'" (userRowSelect)="onCantRowSelect($event)"
+                         [settings]="settings"
+                         [source]="sourceInterviewee">
+        </ng2-smart-table>
+      </nb-tab>
+      <nb-tab tabTitle="Questions">
+        <ng2-smart-table *ngIf="isDetailedSelected=='1'" (userRowSelect)="onUserRowSelect($event)"
+                         [settings]="questionSettings"
+                         [source]="sourceQuestions">
+        </ng2-smart-table>
+      </nb-tab>
+    </nb-tabset>
+  </nb-card-body>
+</nb-card>
