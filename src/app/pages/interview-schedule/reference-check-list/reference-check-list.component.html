@@ -1,18 +1,26 @@
 <nb-card style="width: 80vw">
   <nb-card-header>
-    <div class="row">
-      <div class="col-md-10"> {{candidate.fullname}} Reference Check</div>
-      <div class="col-md-2">
-        <nb-actions size="medium" class="text-left">
-          <nb-action></nb-action>
-          <nb-action (click)="openAddTutorDialogue()" icon="plus-square-outline" nbTooltip="Add Interview"
-                     nbTooltipPlacement="bottom"></nb-action>
-          <nb-action></nb-action>
-        </nb-actions>
-      </div>
-    </div>
+    {{candidate?.fullname}} Additional Info
   </nb-card-header>
   <nb-card-body>
+    <div class="row">
+      <div class="col-4">
+        <button nbButton status="success" hero (click)="openRefDialogue()">
+          Reference Check
+        </button>
+      </div>
+      <div class="col-4">
+        <button nbButton status="success" hero (click)="openRefDialogueJob()">
+          Job Application
+        </button>
+      </div>
+      <div class="col-4">
+        <button nbButton status="success" hero (click)="openRefDialoguePre()">
+          Pre Interview Form
+        </button>
+      </div>
+
+    </div>
 
   </nb-card-body>
 </nb-card>

@@ -39,7 +39,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [{title: 'Log out'}];
+  userMenu = [
+    {
+      title: 'Change Password',
+    }, {
+      title: 'Log out',
+    },
+  ];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
@@ -54,12 +60,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.currentTheme = this.themeService.currentTheme;
 
     const userProf = localStorage.getItem('auth');
+
     if (!userProf) {
       this.router.navigate(['/']);
       return;
     }
 
     this.currentTheme = this.themeService.currentTheme;
+
+    this.menuService.onItemClick().subscribe(bag => {
+      if (bag.item.title === 'Log out') {
+        this.logout();
+      }
+    });
 
     this.userService.getUsers()
       .pipe(takeUntil(this.destroy$))
@@ -95,6 +108,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.layoutService.changeLayoutSize();
 
     return false;
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/']);
+    // window.location.reload();
   }
 
   navigateHome() {

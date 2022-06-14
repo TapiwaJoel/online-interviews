@@ -49,6 +49,11 @@ const routes: Routes = [{
         .then(m => m.JobApplicationFormModule),
     },
     {
+      path: 'jobs',
+      loadChildren: () => import('./job/job.module')
+        .then(m => m.JobModule),
+    },
+    {
       path: '',
       redirectTo: 'dashboard',
       pathMatch: 'full',

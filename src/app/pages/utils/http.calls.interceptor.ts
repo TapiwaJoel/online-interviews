@@ -49,18 +49,17 @@ export class HttpCallsInterceptor implements HttpInterceptor {
     return next.handle(updatedRequest).pipe(
       tap(
         event => {
-
           if (event instanceof HttpResponse) {
-            console.log('event', event);
             if (event.status === 400) {
               this.toast.makeToast('danger', 'Error', event.body.message);
             } else {
-              this.toast.makeToast('success', 'Success', event.body.message);
+              if (request.method !== 'GET') {
+                this.toast.makeToast('success', 'Success', event.body.message);
+              }
             }
           }
         },
         (error: HttpErrorResponse) => {
-          console.log('event', error);
           let title: any;
           let content = `Something went wrong`;
           const status: NbComponentStatus = 'danger';

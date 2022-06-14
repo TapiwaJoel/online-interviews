@@ -5,6 +5,8 @@ import {NbActionsModule, NbCardModule, NbInputModule, NbSpinnerModule} from '@ne
 import {EffectsModule} from '@ngrx/effects';
 import {StoreModule} from '@ngrx/store';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
+import {JobEffects} from '../job/job.effects';
+import {jobReducer} from '../job/job.reducer';
 import {SectionEffects} from '../section/section.effects';
 import {sectionReducer} from '../section/section.reducer';
 import {QuestionsAddComponent} from './questions-add/questions-add.component';
@@ -31,6 +33,8 @@ import {questionReducer} from './questions.reducer';
     EffectsModule.forFeature([QuestionEffects]),
     StoreModule.forFeature('sections', sectionReducer),
     EffectsModule.forFeature([SectionEffects]),
+    StoreModule.forFeature('jobs', jobReducer),
+    EffectsModule.forFeature([JobEffects]),
     NbSpinnerModule,
     NbActionsModule,
     Ng2SmartTableModule,

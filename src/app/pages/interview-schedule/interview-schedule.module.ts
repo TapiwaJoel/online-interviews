@@ -6,6 +6,7 @@ import {
   NbAlertModule,
   NbButtonModule,
   NbCardModule,
+  NbCheckboxModule,
   NbDatepickerModule,
   NbIconModule,
   NbInputModule,
@@ -35,9 +36,11 @@ import {InterviewScheduleStartComponent} from './interview-schedule-start/interv
 import {InterviewScheduleComponent} from './interview-schedule.component';
 import {InterviewScheduleEffects} from './interview-schedule.effects';
 import {interviewScheduleReducer} from './interview-schedule.reducer';
+import {JobApplicationFormComponent} from './job-application-form-add/job-application-form-add.component';
+import {PreInterviewComponent} from './pre-interview-add/pre-interview-add.component';
 import {ReferenceCheckAddComponent} from './reference-check-add/reference-check-add.component';
 import {ReferenceCheckListComponent} from './reference-check-list/reference-check-list.component';
-import { ScoreCardComponent } from './score-card/score-card.component';
+import {ScoreCardComponent} from './score-card/score-card.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,8 @@ import { ScoreCardComponent } from './score-card/score-card.component';
     InterviewScheduleInvitationComponent,
     InterviewScheduleStartComponent,
     ReferenceCheckListComponent,
+    JobApplicationFormComponent,
+    PreInterviewComponent,
     ReferenceCheckAddComponent,
     ScoreCardComponent,
   ],
@@ -78,6 +83,7 @@ import { ScoreCardComponent } from './score-card/score-card.component';
     NbIconModule,
     NbButtonModule,
     NbInputModule,
+    NbCheckboxModule,
   ],
 })
 export class InterviewScheduleModule {

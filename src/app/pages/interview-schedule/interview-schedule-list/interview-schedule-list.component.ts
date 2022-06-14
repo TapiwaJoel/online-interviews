@@ -103,6 +103,7 @@ export class InterviewScheduleListComponent implements OnInit {
 
     this.store.pipe(select(selectAllInterviewSchedules)).subscribe((data) => {
       data = data.map((interviewSchedule) => {
+        console.log('data 0774321535 top 6315 + 10000', data);
         return {
           id: interviewSchedule.id,
           name: interviewSchedule.interview.name,

@@ -41,19 +41,6 @@ export class InterviewScheduleDetailsComponent implements OnInit {
         title: 'Time Slot',
         type: 'string',
       },
-      test: {
-        title: 'Reference Check',
-        type: 'html',
-        valuePrepareFunction: (cell, row) => {
-          return `<a
-                    class="btn btn-outline-success btn-icon btn-semi-round btn-demo"
-                    id="button"
-                    (click)="onSubmit()"
-                    type="button">
-                  View Ref Check
-            </a>`;
-        },
-      },
       status: {
         title: 'Invitation Status',
         type: 'string',
@@ -134,20 +121,21 @@ export class InterviewScheduleDetailsComponent implements OnInit {
     this.loader$ = this.store.pipe(select(selectUserLoading));
 
     this.interviewScheduleService.loadScheduledInterviewQuestions(this.interview?.id).subscribe((data: any) => {
-      data = data.result.map(d => {
-        return {
-          id: d.question.id,
-          question: d.question.question,
-          weight: d.question.weight,
-        };
-      });
-      this.sourceQuestions.load(data);
+      if (data.result.length) {
+        data = data.result.map(d => {
+          return {
+            id: d.question.id,
+            question: d.question.question,
+            weight: d.question.weight,
+          };
+        });
+        this.sourceQuestions.load(data);
+      } else {
+        this.sourceQuestions.load([]);
+      }
     });
 
     this.interviewScheduleService.interviewScheduleInterviewId.subscribe((id: any) => {
-      console.log('Interview', id);
-      console.log('id.panelists', id.panelists);
-
       if (id['panelists'] === undefined && Object.keys(id).length) {
         const panel = {
           id: id.user.id,

@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Router} from '@angular/router';
 
 import {INTERVIEWEE_MENU_ITEMS, MENU_ITEMS} from './pages-menu';
 
@@ -15,9 +16,16 @@ import {INTERVIEWEE_MENU_ITEMS, MENU_ITEMS} from './pages-menu';
 export class PagesComponent {
   menu;
 
-  constructor() {
-    const user = JSON.parse(localStorage.getItem('auth'));
-    if (user.user.roles === 'ADMIN') {
+  constructor(private router: Router) {
+
+    const auth = localStorage.getItem('auth');
+    if (!auth) {
+      this.router.navigate(['/']);
+      return;
+    }
+
+    const user = JSON.parse(auth);
+    if (user.user.roles === 'ADMIN' || user.user.roles === 'PANELIST') {
       this.menu = MENU_ITEMS;
     }
     if (user.user.roles === 'INTERVIEWEE') {

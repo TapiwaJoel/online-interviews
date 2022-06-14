@@ -1,5 +1,7 @@
+import {HttpErrorResponse} from '@angular/common/http';
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 import {InterviewScheduleService} from '../interview-schedule.service';
 
 @Component({
@@ -12,8 +14,11 @@ export class ReferenceCheckAddComponent implements OnInit {
   addInterviewForm: FormGroup;
   statuses = [{val: true, key: 'YES'}, {val: false, key: 'NO'}];
 
-  constructor(private interviewScheduleService: InterviewScheduleService) {
+  constructor(private interviewScheduleService: InterviewScheduleService,
+              ) {
   }
+
+// /pages/job-application-form
 
   ngOnInit(): void {
     this.addInterviewForm = new FormGroup({
@@ -39,15 +44,21 @@ export class ReferenceCheckAddComponent implements OnInit {
     this.addInterviewForm.patchValue({
       candidateId: this.candidate.fullname,
     });
+
+    console.log('candidate', this.candidate);
+    this.interviewScheduleService.getRefCheckById(this.candidate.id).subscribe((data: any) => {
+      console.log('reference', data.result);
+      // this.reference = data.result;
+    }, (error: HttpErrorResponse) => {
+      console.log('error', error.error.message);
+    });
   }
 
   onSubmit() {
-    console.log(this.addInterviewForm.value);
     let competent = this.addInterviewForm.value.competent;
     competent = competent === 'true';
 
     const candidate = {...this.addInterviewForm.value, candidateId: this.candidate.id, competent: competent};
-    console.log('candidate', candidate);
     this.interviewScheduleService.addRefCheck(candidate).subscribe((data) => {
       this.addInterviewForm.reset();
       console.log(data);

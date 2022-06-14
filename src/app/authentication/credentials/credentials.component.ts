@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
-import {AppState} from '../../pages/app-store/app-state';
+import {Toast} from '../../pages/utils/toast';
 import {AuthenticationService} from '../authentication.service';
 
 @Component({
@@ -22,7 +21,7 @@ export class CredentialsComponent implements OnInit {
 
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
-              private store: Store<AppState>) {
+              private toast: Toast) {
   }
 
   ngOnInit(): void {
@@ -41,22 +40,22 @@ export class CredentialsComponent implements OnInit {
     this.authenticationService.credentials(this.signInForm.value).subscribe((data) => {
       this.credentialSubmittedSuccess = true;
       this.isSubmitting = false;
-      console.log('data', data);
     }, error => {
       this.isSubmitting = false;
-      console.log('error', error);
+      this.toast.makeToast('danger', 'Error', error.error.message);
     });
   }
 
   onSubmitToken() {
     this.isSubmitting = true;
-    this.authenticationService.validate(this.verificationForm.value.token).subscribe((data) => {
+    this.authenticationService.validate(this.verificationForm.value.token).subscribe((data: any) => {
       this.credentialSubmittedSuccess = true;
       this.isSubmitting = false;
-      console.log('data', data);
+      this.router.navigate(['/']);
+      this.toast.makeToast('success', 'Verification Success', data.message);
     }, error => {
       this.isSubmitting = false;
-      console.log('error', error);
+      this.toast.makeToast('danger', 'Error', error.error.message);
     });
   }
 }

@@ -1,4 +1,4 @@
-<fieldset [nbSpinner]="isSubmitting" nbSpinnerStatus="danger" class="text-center">
+<fieldset [nbSpinner]="isSubmitting" nbSpinnerStatus="danger">
 
   <img src="assets/images/logo-online.png" alt="Logo" style="width: 28vw; margin-bottom: 2rem"/>
   <form [formGroup]="signInForm">
@@ -8,6 +8,7 @@
     <div class="form-group">
       <input class="form-control" formControlName="password" id="Password" placeholder="Password" type="password">
     </div>
+    <button type="button" class="btn btn-link" (click)="resetPassword()">Forgot Password??</button>
     <button (click)="onSubmit()" class="btn btn-primary btn-block" type="submit">Submit</button>
   </form>
 </fieldset>

@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import {LocalDataSource} from 'ng2-smart-table';
 import {Observable, of} from 'rxjs';
 import {AppState} from '../../app-store/app-state';
+import * as JobActions from '../../job/job.actions';
 import * as SectionActions from '../../section/section.actions';
 import {QuestionsAddComponent} from '../questions-add/questions-add.component';
 import {QuestionsEditComponent} from '../questions-edit/questions-edit.component';
@@ -35,20 +36,9 @@ export class QuestionsListComponent implements OnInit {
         title: 'Weight',
         type: 'string',
       },
-      status: {
-        title: 'Status',
+      jobRole: {
+        title: 'Job Role',
         type: 'string',
-        filter: {
-          type: 'list',
-          config: {
-            selectText: 'Select...',
-            list: [
-              {value: 'ACTIVE', title: 'ACTIVE'},
-              {value: 'INACTIVE', title: 'INACTIVE'},
-              {value: 'DELETED', title: 'DELETED'},
-            ],
-          },
-        },
       },
       created: {
         title: 'Date',
@@ -77,16 +67,17 @@ export class QuestionsListComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(QuestionActions.loadQuestionRequest());
     this.store.dispatch(SectionActions.loadSectionRequest());
-
+    this.store.dispatch(JobActions.loadJobRequest());
     this.loader$ = this.store.pipe(select(selectQuestionLoading));
     this.store.pipe(select(selectAllQuestions)).subscribe((data) => {
-      data = data.map((interview) => {
+      data = data.map((interview: any) => {
         return {
           id: interview.id,
           question: interview.question,
           section: interview.section,
           weight: interview.weight,
           sectionId: interview.section.name,
+          jobRole: interview.jobRole.name,
           created: moment(interview.created).locale('en-gb').format('LLLL'),
         };
       });

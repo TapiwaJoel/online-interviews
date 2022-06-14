@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {map, mergeMap, tap} from 'rxjs/operators';
+import {map, mergeMap} from 'rxjs/operators';
 import {ServiceResponse} from '../utils/service.response';
 import * as SectionActions from './section.actions';
 import {Section} from './section.entity';
@@ -21,16 +21,14 @@ export class SectionEffects {
     ));
 
   createSections$ = createEffect(() =>
-      this.actions$.pipe(
-        ofType(SectionActions.createRequest),
-        mergeMap((action) => this.sectionService.createSection(action.section)
-          .pipe(
-            tap(() => console.log('TEST', action.section)),
-            map((response: ServiceResponse<Partial<Section>>) =>
-              SectionActions.loadSection({section: response.result})),
-          )),
-      ),
-    {dispatch: false});
+    this.actions$.pipe(
+      ofType(SectionActions.createRequest),
+      mergeMap((action) => this.sectionService.createSection(action.section)
+        .pipe(
+          map((response: ServiceResponse<Partial<Section>>) =>
+            SectionActions.loadSection({section: response.result})),
+        )),
+    ));
 
   editSections$ = createEffect(() =>
       this.actions$.pipe(
@@ -39,7 +37,6 @@ export class SectionEffects {
           .pipe(
             map((response: ServiceResponse<Partial<Section>>) =>
               SectionActions.loadSectionEdited({section: response.result})),
-            tap((ev) => console.log('TEST', ev)),
           )),
       ));
 

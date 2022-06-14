@@ -4,7 +4,7 @@
   <nb-card-body>
     <form [formGroup]="addQuestionForm">
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           <div class="form-group">
             <label for="status">Section</label>
             <select formControlName="sectionId" class="form-control"
@@ -13,7 +13,15 @@
             </select>
           </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="name">Job Title</label>
+            <select formControlName="jobId" class="form-control" id="name">
+              <option *ngFor="let status of jobs" value="{{status.id}}">{{status.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-4">
           <div class="form-group">
             <div class="form-group">
               <label for="weight">Weight</label>

@@ -1,0 +1,42 @@
+<nb-card style="width: 50vw">
+  <nb-card-header>Add Job</nb-card-header>
+
+  <nb-card-body>
+    <form [formGroup]="addJobForm">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input class="form-control" id="name" formControlName="name" placeholder="name" type="text">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="status">Section</label>
+            <select formControlName="sectionId" class="form-control" id="status">
+              <option *ngFor="let status of sections" value="{{status.id}}">{{status.name}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="form-group">
+            <button [disabled]="!addJobForm.valid"
+                    class="btn btn-outline-success btn-icon btn-semi-round btn-demo"
+                    id="button"
+                    (click)="onSubmit()"
+                    type="button">
+              Save
+              <i class="plus-outline"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>
+
+

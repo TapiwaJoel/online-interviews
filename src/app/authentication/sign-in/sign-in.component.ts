@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs';
+import {InterviewScheduleService} from '../../pages/interview-schedule/interview-schedule.service';
+import {Toast} from '../../pages/utils/toast';
 import {AuthenticationService} from '../authentication.service';
 
 @Component({
@@ -15,20 +17,42 @@ export class SignInComponent implements OnInit {
   loading$: Observable<boolean>;
   success$: Observable<boolean>;
   isSubmitting = false;
+  user;
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
+    private interviewScheduleService: InterviewScheduleService,
+    private toast: Toast,
     private authenticationService: AuthenticationService,
   ) {
   }
 
   ngOnInit(): void {
     localStorage.clear();
+    this.checkToken();
     this.signInForm = new FormGroup({
       'username': new FormControl(null, Validators.required),
       'password': new FormControl(null, Validators.required),
     });
+    // pre-interview-form
     // private authenticationService: AuthenticationService,
+  }
+
+
+  checkToken() {
+    this.route.queryParams.subscribe((dta: any) => {
+      if (dta.token) {
+        this.interviewScheduleService.checkValidate(dta.token)
+          .subscribe((data: any) => {
+            this.user = data.result;
+            localStorage.setItem('auth', JSON.stringify({user: this.user}));
+            this.router.navigate(['/pages/pre-interview-form']).then((what) => {
+              console.log(what);
+            });
+          });
+      }
+    });
   }
 
   public onSubmit(): void {
@@ -37,10 +61,12 @@ export class SignInComponent implements OnInit {
       this.isSubmitting = false;
       localStorage.setItem('auth', JSON.stringify(data));
       this.router.navigate(['/pages/interview-schedule']);
-      console.log('data', data);
     }, error => {
       this.isSubmitting = false;
-      console.log('error', error);
     });
+  }
+
+  public resetPassword() {
+    this.router.navigate(['/password-reset']);
   }
 }

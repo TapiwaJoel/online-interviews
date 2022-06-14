@@ -1,0 +1,93 @@
+<nb-card style="width: 80vw;">
+  <nb-card-header>Pre Interview Form</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="addInterviewForm">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="name">Enter your full name</label>
+              <input class="form-control" id="name" placeholder="Name" readonly formControlName="applicantName"
+                     type="text">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12" style="margin-bottom: .5rem; margin-top: 1.5rem; font-weight: bold;">
+          I hereby give permission for the following checks to be done
+        </div>
+        <div class="col-3">
+          <nb-checkbox (checkedChange)="onEmploymentChecksChange($event)">Employment Reference Checks</nb-checkbox>
+        </div>
+        <div class="col-3">
+          <nb-checkbox (checkedChange)="onQualificationChecksCheckChange($event)">Qualification Checks</nb-checkbox>
+        </div>
+        <div class="col-3">
+          <nb-checkbox (checkedChange)="onCriminalCheckChange($event)">Criminal Checks</nb-checkbox>
+        </div>
+        <div class="col-3">
+          <nb-checkbox (checkedChange)="onCreditCheckChange($event)">Credit Checks</nb-checkbox>
+        </div>
+
+        <div class="col-sm-12" style="margin-bottom: .5rem; margin-top: 2rem; font-weight: bold;">
+          Further to the above I declare the following
+        </div>
+
+        <div class="col-12">
+          <nb-checkbox (checkedChange)="onWrittenAgreementChange($event)">All information provided in written or verbal
+            form
+            adequately represents
+            my career history to
+            date
+          </nb-checkbox>
+        </div>
+        <div class="col-12">
+          <nb-checkbox (checkedChange)="onWorkDetailsChange($event)">All positions and companies I have worked for,
+            have been noted on my CV and time periods for
+            positions at various companies are correct
+          </nb-checkbox>
+        </div>
+        <div class="col-12">
+          <nb-checkbox (checkedChange)="onReferencesProvidedChange($event)">References provided include current
+            direct line manager and other references to whom I
+            previously
+            had a direct report
+          </nb-checkbox>
+        </div>
+        <div class="col-12">
+          <nb-checkbox (checkedChange)="onTerminationChange($event)">All information regarding terminations including
+            retrenchments/mutual separations and /or
+            disciplinary procedures have been declared to Econet Wireless in writing
+          </nb-checkbox>
+        </div>
+        <div class="col-12">
+          <nb-checkbox (checkedChange)="onHasCriminalRecordChange($event)">I do not have a criminal record in any
+            country
+          </nb-checkbox>
+        </div>
+
+
+        <div class="col-sm-12" style="margin-bottom: .5rem; margin-top: 2rem; font-weight: bold;">
+          Witness Details
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="fullName">Full Name</label>
+              <input class="form-control" id="fullName" formControlName="witness" placeholder="Enter name and surname"
+                     type="text">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="phoneNumber">Phone Number</label>
+              <input class="form-control" id="phoneNumber" formControlName="witnessNumber" placeholder="Phone Number"
+                     type="text">
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>

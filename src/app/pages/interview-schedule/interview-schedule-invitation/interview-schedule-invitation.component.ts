@@ -52,13 +52,19 @@ export class InterviewScheduleInvitationComponent implements OnInit {
       this.users = data;
     });
 
+
+    console.log('this.interview.sectionId', this.interview.sectionId);
     this.interviewScheduleService.loadSectionQuestions(this.interview.sectionId).subscribe((data: any) => {
+
+      console.log('data', data);
       data = data.result.map(d => {
         return {
-          id: d.question.id,
-          question: d.question.question,
+          id: d.id,
+          question: d.question,
         };
       });
+
+
       this.questions = data;
     });
   }

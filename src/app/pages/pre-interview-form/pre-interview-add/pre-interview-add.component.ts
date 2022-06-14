@@ -18,7 +18,7 @@ export class PreInterviewAddComponent implements OnInit {
   referencesProvided = false;
   termination = false;
   hasCriminalRecord = false;
-
+  user;
   constructor(private preInterviewFormService: PreInterviewFormService) {
   }
 
@@ -28,6 +28,12 @@ export class PreInterviewAddComponent implements OnInit {
       witness: new FormControl(''),
       witnessNumber: new FormControl(''),
     });
+
+    console.log('localStorage', localStorage.getItem('auth'));
+
+    this.user = JSON.parse(localStorage.getItem('auth'));
+    console.log('this.user', this.user);
+    this.addInterviewForm.patchValue({applicantName: this.user.user.fullname});
   }
 
   onSubmit() {
@@ -38,6 +44,7 @@ export class PreInterviewAddComponent implements OnInit {
       qualificationChecks: this.qualificationChecks,
       criminalChecks: this.criminalChecks,
       creditChecks: this.creditChecks,
+      userId: this.user.user.id,
       writtenAgreement: this.writtenAgreement,
       workDetails: this.workDetails,
       referencesProvided: this.referencesProvided,
@@ -45,16 +52,14 @@ export class PreInterviewAddComponent implements OnInit {
       hasCriminalRecord: this.hasCriminalRecord,
     };
 
+
+    console.log('preInterview', preInterview);
     this.preInterviewFormService.postPreform(preInterview)
       .subscribe(data => {
-        console.log('postPreform', data);
+        console.log('postPreformz', data);
       }, error => {
         console.log('post', error);
       });
-  }
-
-  onCheckChange($event: Event) {
-    console.log('checkChange', $event);
   }
 
   onEmploymentChecksChange($event: boolean) {

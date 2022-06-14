@@ -36,20 +36,20 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/questions',
   },
   {
-    title: 'Reference Check Forms',
-    icon: 'checkmark-square-outline',
-    link: '/pages/ref-check',
+    title: 'Job',
+    icon: 'question-mark-circle-outline',
+    link: '/pages/jobs',
   },
-  {
-    title: 'Pre-Interview Form',
-    icon: 'checkmark-square-outline',
-    link: '/pages/pre-interview-form',
-  },
-  {
-    title: 'Job Application Form',
-    icon: 'checkmark-square-outline',
-    link: '/pages/job-application-form',
-  },
+  // {
+  //   title: 'Pre-Interview Form',
+  //   icon: 'checkmark-square-outline',
+  //   link: '/pages/pre-interview-form',
+  // },
+  // {
+  //   title: 'Job Application Form',
+  //   icon: 'checkmark-square-outline',
+  //   link: '/pages/job-application-form',
+  // },
 ];
 
 export const INTERVIEWEE_MENU_ITEMS: NbMenuItem[] = [
@@ -60,11 +60,11 @@ export const INTERVIEWEE_MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Pre Interview Form',
     icon: 'person-outline',
-    link: '/pages/users',
+    link: '/pages/pre-interview-form',
   },
   {
     title: 'Job Application Form',
     icon: 'person-outline',
-    link: '/pages/users',
+    link: '/pages/job-application-form',
   },
 ];

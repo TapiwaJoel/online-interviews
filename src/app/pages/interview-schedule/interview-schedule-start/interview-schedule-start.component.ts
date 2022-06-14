@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 import {select, Store} from '@ngrx/store';
 import {AppState} from '../../app-store/app-state';
 import {Interview} from '../../interviews/interviews.entity';
@@ -25,6 +26,7 @@ export class InterviewScheduleStartComponent implements OnInit {
   index = 0;
 
   constructor(private interviewScheduleService: InterviewScheduleService,
+              private router: Router,
               private store: Store<AppState>) {
   }
 
@@ -35,7 +37,7 @@ export class InterviewScheduleStartComponent implements OnInit {
 
     this.addInterviewForm = new FormGroup({
       comment: new FormControl('', Validators.required),
-      weight: new FormControl('', Validators.required),
+      mark: new FormControl('', Validators.required),
     });
 
     this.interview = this.interviewScheduleService.getInterview();
@@ -48,9 +50,9 @@ export class InterviewScheduleStartComponent implements OnInit {
     this.interviewScheduleService.loadScheduledInterviewQuestions(this.interview?.id).subscribe((data: any) => {
       data = data.result.map(d => {
         return {
-          id: d.question.id,
+          id: d.id,
           question: d.question.question,
-          weight: d.question.weight,
+          mark: d.question.weight,
         };
       });
       this.questions = data;
@@ -69,34 +71,32 @@ export class InterviewScheduleStartComponent implements OnInit {
 
     if (this.questions.length) {
       this.question = this.questions[this.index];
-      this.index++;
     }
   }
 
   next() {
-    const user = JSON.parse(localStorage.getItem('auth')).userDto.id;
+    const user = JSON.parse(localStorage.getItem('auth')).user.id;
+    console.log('user', JSON.parse(localStorage.getItem('auth')));
     if (this.index <= this.questions.length - 1) {
       this.question = this.questions[this.index];
 
       const mark = {
         ...this.addInterviewForm.value,
-        mark: parseInt(this.addInterviewForm.value.weight, 0),
-        candidateId: this.scheduleInterviewForm.value.candidateId,
+        mark: parseInt(this.addInterviewForm.value.mark, 0),
+        candidateId: parseInt(this.scheduleInterviewForm.value.candidateId, 0),
         interviewScheduleId: this.interview.id,
         questionInterviewId: this.question.id,
         panelistId: user,
       };
 
       this.interviewScheduleService.postScores(mark).subscribe((data) => {
-        console.log('data', data);
+        this.index++;
       }, error => {
         console.log('error', error);
       });
 
-      this.index++;
     } else {
-      console.log('DONE....');
-      console.log('INDEX....', this.index);
+      this.router.navigate(['/pages/job-application-form']);
     }
   }
 }

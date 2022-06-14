@@ -69,7 +69,7 @@ export class InterviewScheduleService {
   }
 
   getRefCheckById(id: string) {
-    const pathUrl = '/candidate/reference-checks/candidate-id/';
+    const pathUrl = '/candidate/application-search?id=';
     return this.http.get(this.config.apiUrl + pathUrl + id);
   }
 
@@ -84,14 +84,17 @@ export class InterviewScheduleService {
   }
 
   checkValidate(token: string) {
-    const pathUrl = '/api/account/validate-user/';
+    const pathUrl = '/account/validate-user/';
     return this.http.get(this.config.apiUrl + pathUrl + token);
   }
 
   getScoresByInterviewSchedule(id: string) {
-    // curl -X GET "http://192.168.104.99:8819/api/interview/score-card/interview-schedule-id/2"
-    // -H "accept: application/json"
     const pathUrl = '/interview/score-card/interview-schedule-id/';
+    return this.http.get(this.config.apiUrl + pathUrl + id);
+  }
+
+  getCandidate(id: string) {
+    const pathUrl = '/candidate/application-search?id=';
     return this.http.get(this.config.apiUrl + pathUrl + id);
   }
 }

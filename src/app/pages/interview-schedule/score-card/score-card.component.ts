@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {LocalDataSource} from 'ng2-smart-table';
+import {forkJoin} from 'rxjs';
 import {InterviewScheduleService} from '../interview-schedule.service';
 
 @Component({
@@ -28,39 +29,64 @@ export class ScoreCardComponent implements OnInit {
     },
   };
   source: LocalDataSource = new LocalDataSource();
+  candidateIds = [];
+  candidates$ = [];
+  candidatesAll = [];
 
   constructor(private interviewScheduleService: InterviewScheduleService) {
   }
 
   ngOnInit(): void {
-    console.log('ngOnInit', this.interviewScheduleService.candidates);
+    console.log('ngOnInit Test', this.interviewScheduleService.candidates);
     const interviewees = this.interviewScheduleService.candidates;
     this.interviewScheduleService.getScoresByInterviewSchedule(this.interview.id).subscribe((data: any) => {
       if (data.result.length) {
-        const candidatesArr = [];
+
         for (const result of data.result) {
           const candidateId = result.candidateId;
-          const candidate = {};
-          const index = candidatesArr.findIndex(x => x.candidateId === candidateId);
-          if (index < 0) {
-            candidate['candidateId'] = candidateId;
-            candidate['mark'] = result.mark;
-            console.log('candidateId', candidateId);
-            const interIndex = interviewees.findIndex(x => x.id === candidateId);
-            // if (interIndex >= 0) {
-            const userFound = interviewees[interIndex];
-            console.log('userFound', userFound);
-            candidate['fullname'] = userFound.fullname;
-            candidate['email'] = userFound.email;
-            candidatesArr.push(candidate);
-            // }
-          } else {
-            const newCandidate = candidatesArr[index];
-            newCandidate['mark'] = newCandidate['mark'] + result.mark;
-            candidatesArr[index] = newCandidate;
+
+          const indexCandidate = this.candidateIds.includes(candidateId);
+          if (!indexCandidate) {
+            this.candidates$.push(this.interviewScheduleService.getCandidate(candidateId));
+            this.candidateIds.push(candidateId);
           }
         }
-        this.source.load(candidatesArr);
+
+
+        forkJoin([...this.candidates$]).subscribe((candidates) => {
+          const candidatesArr = [];
+          [...candidates].forEach((candidate: any) => {
+            this.candidatesAll.push(...candidate.result);
+          });
+
+
+          for (const result of data.result) {
+
+            const candidateId = result.candidateId;
+            const candidate = {};
+            const index = candidatesArr.findIndex(x => x.candidateId === candidateId);
+
+            if (index < 0) {
+              candidate['candidateId'] = candidateId;
+              candidate['mark'] = result.mark;
+              const interIndex = this.candidatesAll.findIndex(x => x.id === candidateId);
+              const userFound = this.candidatesAll[interIndex];
+              candidate['fullname'] = userFound.user.fullname;
+              candidate['email'] = userFound.user.email;
+              candidatesArr.push(candidate);
+            } else {
+              const newCandidate = candidatesArr[index];
+              newCandidate['mark'] = newCandidate['mark'] + result.mark;
+              candidatesArr[index] = newCandidate;
+            }
+          }
+          this.candidateIds.forEach(id => {
+
+          });
+          this.source.load(candidatesArr);
+        });
+
+
       }
     }, error => {
       console.log('error', error);
